@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../config/firebase.config'
+
 //pages
 import { LoginPage, RegisterPage, MyApp, HomePage } from '../pages/index.pages'
 
