@@ -36,7 +36,7 @@ export class RegisterPage {
       loading.dismiss();
       this.showToast("Registrado con éxito.")
 
-      //TODO: push al home
+      //TODO: pop para regresar a login
 
     }).catch(error => {
       loading.dismiss();
