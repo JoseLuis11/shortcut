@@ -13,6 +13,9 @@ import { firebaseConfig } from '../config/firebase.config'
 //pages
 import { LoginPage, RegisterPage, MyApp, HomePage } from '../pages/index.pages'
 
+//services
+import {AuthenticationService} from '../providers/index.prodivers'
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { LoginPage, RegisterPage, MyApp, HomePage } from '../pages/index.pages'
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationService
   ]
 })
 export class AppModule {}
