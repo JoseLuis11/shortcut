@@ -25,7 +25,7 @@ export class RegisterPage {
     this.user.password = '';
   }
 
-  register() {
+  addUser() {
     let loading = this.loadingCtrl.create({
       content: 'Creando cuenta. Por favor, espere...'
     });
