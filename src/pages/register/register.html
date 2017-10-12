@@ -30,6 +30,12 @@
       </ion-label>
       <ion-input [(ngModel)]="user.password" type="password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>
+        <h6>Repetir contraseña</h6>
+      </ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
     <div padding><br>
       <ion-buttons>
         <button ion-button block color="dark" icon-right [disabled]="!user.email.includes('@') || !user.email.includes('.') 
