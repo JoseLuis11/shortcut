@@ -16,6 +16,8 @@ export class RegisterPage {
 
   user = {} as UserModel;
   profile = {} as Profile;
+  repeatedPassword: string;
+
 
   constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private authService: AuthenticationService) {
   }
@@ -26,24 +28,28 @@ export class RegisterPage {
   }
 
   addUser() {
-    let loading = this.loadingCtrl.create({
-      content: 'Creando cuenta. Por favor, espere...'
-    });
-    loading.present();
+    if (this.user.password != this.repeatedPassword) {
+      this.showToast("Las contraseñas no coinciden. Inténtelo de nuevo.")
 
-    this.authService.createUserWithEmailAndPassword(this.user).then(result => {
-      this.authService.createProfile(this.profile);
-      loading.dismiss();
-      this.showToast("Registrado con éxito.")
+    } else {
+      let loading = this.loadingCtrl.create({
+        content: 'Creando cuenta. Por favor, espere...'
+      });
+      loading.present();
 
-      this.navCtrl.pop();
+      this.authService.createUserWithEmailAndPassword(this.user).then(result => {
+        this.authService.createProfile(this.profile);
+        loading.dismiss();
+        this.showToast("Registrado con éxito.")
 
-    }).catch(error => {
-      loading.dismiss();
+        this.navCtrl.pop();
 
-      this.showToast("Ha ocurrido un error inesperado. Por favor intente nuevamente.")
-    })
+      }).catch(error => {
+        loading.dismiss();
 
+        this.showToast("Ha ocurrido un error inesperado. Por favor intente nuevamente.")
+      })
+    }
 
   }
 
