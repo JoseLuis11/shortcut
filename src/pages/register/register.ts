@@ -46,9 +46,16 @@ export class RegisterPage {
 
       }).catch(error => {
         loading.dismiss();
+        if (error.message.includes("The email address is badly formatted")) {
+          this.showToast("El email tiene un formato erroneo.");
+        } else if (error.message.includes("The email address is already in use by another account.")) {
+          this.showToast("Este email está en uso actualmente.");
+        } else {
+          console.log(error);
+          this.showToast("Ha ocurrido un error inesperado. Por favor intente nuevamente.")
 
-        this.showToast("Ha ocurrido un error inesperado. Por favor intente nuevamente.")
-      })
+        }
+      });
     }
 
   }
