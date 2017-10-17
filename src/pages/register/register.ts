@@ -16,7 +16,7 @@ export class RegisterPage {
 
   user = {} as UserModel;
   profile = {} as Profile;
-  repeatedPassword: string;
+  repeatedPassword: string; 
 
 
   constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private authService: AuthenticationService) {
