@@ -8,9 +8,9 @@
     <ion-content>
 
         <ion-list padding-top>
-            <button menuClose ion-item>Locales</button>
-            <button menuClose ion-item>Establecimientos</button>
-            <button menuClose ion-item>Cambiar contraseña</button>
+            <button menuClose ion-item (click)="home()">Home</button>
+            <button menuClose ion-item (click)="establishments()">Locales</button>
+            <button menuClose ion-item (click)="changePassword()">Cambiar contraseña</button>
 
         </ion-list>
     </ion-content>
