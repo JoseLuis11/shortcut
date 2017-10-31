@@ -1,3 +1,4 @@
+import { ChangePasswordPage } from './../pages/change-password/change-password';
 import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { Component, ViewChild } from '@angular/core';
