@@ -11,7 +11,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../config/firebase.config'
 
 //pages
-import { LoginPage, RegisterPage, MyApp, HomePage, ChangePasswordPage } from '../pages/index.pages'
+import { LoginPage, 
+  RegisterPage, 
+  MyApp, 
+  HomePage, 
+  ChangePasswordPage,
+  EstablishmentsPage 
+} from '../pages/index.pages'
 
 //services
 import {AuthenticationService} from '../providers/index.prodivers'
@@ -23,7 +29,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     HomePage,
     LoginPage,
     RegisterPage, 
-    ChangePasswordPage
+    ChangePasswordPage,
+    EstablishmentsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     HomePage,
     LoginPage,
     RegisterPage,
-    ChangePasswordPage
+    ChangePasswordPage,
+    EstablishmentsPage
   ],
   providers: [
     StatusBar,
