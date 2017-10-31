@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <img src="assets/img/small_logo.svg">
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+        <ion-list padding-top>
+            <button menuClose ion-item>Locales</button>
+            <button menuClose ion-item>Establecimientos</button>
+            <button menuClose ion-item>Cambiar contraseña</button>
+
+        </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
