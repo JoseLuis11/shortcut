@@ -1,25 +1,26 @@
 <ion-content padding>
-  <img padding-left src="assets/img/logo.png">
+  <img padding src="assets/img/small_logo.svg">
   <ion-list>
-      
-        <ion-item>
-          <ion-label floating>Email</ion-label>
-          <ion-input type="text" [(ngModel)]=user.email></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label floating>Contraseña</ion-label>
-          <ion-input type="password"[(ngModel)]=user.password></ion-input>
-        </ion-item>
 
-        <button  [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 || user.password.length<6" 
-        (keyup.enter)="login()" (click)="login()" text-center text-capitalize block ion-button>Ingresar</button>
+    <ion-item padding-left padding-right>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]=user.email></ion-input>
+    </ion-item>
 
-      
-      </ion-list>
+    <ion-item padding-left padding-right padding-bottom>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]=user.password></ion-input>
+    </ion-item>
+    <ion-item>
+      <button padding [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 || user.password.length<6"
+        (keyup.enter)="login()" (click)="login()" text-center text-capitalize ion-button block>Ingresar</button>
+    </ion-item>
 
 
-  
+  </ion-list>
+
+
+
 </ion-content>
 
 <ion-footer>

@@ -47,7 +47,7 @@ export class AuthenticationService {
         this.showToast("Algo salió mal, intentalo de nuevo.");
         console.log(error);
       })
-    })
+    });
   }
 
   private showToast(text: string) {
@@ -56,6 +56,12 @@ export class AuthenticationService {
       duration: 2500
 
     }).present();
+  }
+
+  resetPassword(email: string): Promise<any> {
+
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+
   }
 
 
