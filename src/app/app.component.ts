@@ -1,7 +1,7 @@
 import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { EstablishmentsPage } from '../pages/establishments/establishments';
-import { ConfigurationPage } from '../pages/configuration/configuration';
+import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { HomePage } from '../pages/home/home';
 
 import { Component, ViewChild } from '@angular/core';
@@ -27,10 +27,6 @@ export class MyApp {
 
   establishments() {
     this.nav.setRoot(EstablishmentsPage);
-  }
-
-  configuration(){
-    this.nav.setRoot(ConfigurationPage);
   }
 
   logout() {
