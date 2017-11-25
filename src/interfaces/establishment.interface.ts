@@ -1,4 +1,4 @@
-export interface Workplace {
+export interface Establishment {
     $key?: string;
     name: string;
     adress: string;

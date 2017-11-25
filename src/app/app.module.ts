@@ -16,7 +16,8 @@ import { LoginPage,
   MyApp, 
   HomePage, 
   ChangePasswordPage,
-  EstablishmentsPage 
+  EstablishmentsPage,
+  EstablishmentProfilePage
 } from '../pages/index.pages'
 
 //services
@@ -30,7 +31,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     LoginPage,
     RegisterPage, 
     ChangePasswordPage,
-    EstablishmentsPage
+    EstablishmentsPage,
+    EstablishmentProfilePage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     LoginPage,
     RegisterPage,
     ChangePasswordPage,
-    EstablishmentsPage
+    EstablishmentsPage,
+    EstablishmentProfilePage
   ],
   providers: [
     StatusBar,

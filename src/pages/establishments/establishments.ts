@@ -1,4 +1,4 @@
-import { Workplace } from './../../interfaces/workplace.interface';
+import { Establishment } from './../../interfaces/establishment.interface';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -10,7 +10,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class EstablishmentsPage {
 
-  workplaces: FirebaseListObservable<Workplace[]>;
+  workplaces: FirebaseListObservable<Establishment[]>;
 
   constructor(public afDatabase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     this.workplaces = this.afDatabase.list(`workplaces`);

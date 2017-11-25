@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Establecimientos
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+        <ion-content img>
+      <img padding
+      src="https://d3uwfvla7gc8hw.cloudfront.net/6627646d7f48bd5f3b9b535a907b63a4/ef93ede2604b180cf23cadee877abc00-noticiaPrincipal">
+        </ion-content>
+      <ion-content>
+      <!-- Segment buttons with icons -->
+      <ion-segment [(ngModel)]="icons" color="primary">
+      <ion-segment-button value="calendar">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="location">
+        <ion-icon name="pin"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="call">
+        <ion-icon name="call"></ion-icon>
+      </ion-segment-button>
+      </ion-segment>
+      
+      <ion-item>
+      <ion-label color="black" floating>
+          <h6>Dirección</h6>
+      </ion-label>
+      <ion-label>
+          <ion-icon item-start> Dirección</ion-icon>
+      </ion-label>
+      </ion-item>
+      <ion-item>
+      <ion-label color="black" floating>
+        <h6>Teléfono</h6>
+      </ion-label>
+      <ion-label>
+        <ion-icon item-start> Teléfono</ion-icon>
+      </ion-label>
+      </ion-item>
+      <ion-item>
+      <ion-label color="black" floating>
+        <h6>Dirección</h6>
+      </ion-label>
+      <ion-label>
+        <ion-icon item-start> Dirección</ion-icon>
+      </ion-label>
+      </ion-item>
+      </ion-content>
