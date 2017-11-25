@@ -52,7 +52,7 @@ export class ChangePasswordPage {
       this.authService.resetPassword(email).then(result => {
         
         loading.dismiss();
-        this.showToast("Correo enviado.");
+        this.showToast("Correo enviado a tu email.");
 
       }).catch(error=>{
         this.showToast("Algo salió mal, intentalo nuevamente.");
