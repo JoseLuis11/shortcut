@@ -1,7 +1,7 @@
 import { RegisterPage } from './../register/register';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, MenuController, ToastController } from 'ionic-angular';
 
 //models
 import { UserModel } from './../../interfaces/user.interface';
@@ -19,9 +19,10 @@ export class LoginPage {
   user = {} as UserModel;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController, 
-    private authService: AuthenticationService,  private toastCtrl: ToastController) {
+    private authService: AuthenticationService, private menuCtrl: MenuController,  private toastCtrl: ToastController) {
     this.user.email = "";
     this.user.password = "";
+    this.menuCtrl.enable(false);
   }
 
   login(){
@@ -32,7 +33,7 @@ export class LoginPage {
 
     this.authService.signInWithEmailAndPassword(this.user).then(result=>{
       loading.dismiss();
-      
+      this.menuCtrl.enable(true);
       this.navCtrl.setRoot(HomePage);
     }).catch(error =>{
       loading.dismiss();

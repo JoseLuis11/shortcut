@@ -5,7 +5,7 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { HomePage } from '../pages/home/home';
 
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -16,7 +16,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -29,8 +29,9 @@ export class MyApp {
     this.nav.setRoot(EstablishmentsPage);
   }
 
-  changePassword() {
-    this.nav.setRoot(ChangePasswordPage);
+  logout() {
+    this.nav.setRoot(LoginPage);
+    this.menuCtrl.enable(false);    
   }
 
   home() {
