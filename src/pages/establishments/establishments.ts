@@ -2,7 +2,7 @@ import { EstablishmentProfilePage } from './../establishment-profile/establishme
 import { Establishment } from './../../interfaces/establishment.interface';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -17,10 +17,11 @@ export class EstablishmentsPage {
   workplacesLoaded;
   establishmentPP = EstablishmentProfilePage;
   establishmentsRef;
+  loading;
 
-  constructor(public afDatabase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afDatabase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     //this.workplaces = this.afDatabase.list(`workplaces`);
-
+    this.showLoading();
     this.establishmentsRef = afDatabase.database.ref('/workplaces');
 
     this.establishmentsRef.on('value', establishmentsList => {
@@ -39,6 +40,7 @@ export class EstablishmentsPage {
 
       this.workplaces = files;
       this.workplacesLoaded = files;
+      this.loading.dismiss();
     });
   }
 
@@ -57,6 +59,7 @@ export class EstablishmentsPage {
 
   getItems(ev) {
     this.initializeEstablishments();
+    
     // set val to the value of the ev target
     var val = ev.target.value;
 
@@ -74,5 +77,12 @@ export class EstablishmentsPage {
       }
     });
   }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+    });
+    this.loading.present();
+  }
+
 
 }
