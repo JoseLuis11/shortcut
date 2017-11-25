@@ -1,7 +1,8 @@
 page-establishment-profile {
-    ion-content img {
-        height: 70vh !important;
-        width: auto !important;
-        align-items: center;
-        }
+    ion-content address {
+        word-wrap: break-word; 
+        word-break: break-all;
+    }
 }
+
+

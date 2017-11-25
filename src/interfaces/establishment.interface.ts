@@ -1,7 +1,7 @@
 export interface Establishment {
     $key?: string;
     name: string;
-    adress: string;
+    address: string;
     phoneNumber: string;
     employees: string[];
     comments: string[];
