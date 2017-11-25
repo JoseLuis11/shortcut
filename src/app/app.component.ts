@@ -1,7 +1,7 @@
 import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { EstablishmentsPage } from '../pages/establishments/establishments';
-import { ChangePasswordPage } from '../pages/change-password/change-password';
+import { SettingsPage } from '../pages/settings/settings';
 import { HomePage } from '../pages/home/home';
 
 import { Component, ViewChild } from '@angular/core';
@@ -23,6 +23,10 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  settings(){
+    this.nav.setRoot(SettingsPage);
   }
 
   establishments() {
