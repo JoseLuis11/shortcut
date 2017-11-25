@@ -12,18 +12,16 @@
 
 <ion-content padding>
   <ion-list>
-    <div *ngFor="let workplace for workplaces">
-      <ion-item>
+      <ion-item *ngFor="let workplace of workplaces | async">
         <ion-thumbnail item-start>
           <!-- dirección de imagen  -->
-          <img src="{{}}">
+          <img src="../../assets/img/establishment.png">
         </ion-thumbnail>
         <h2>{{workplace.name}}</h2>
-        <p>{{worplace.adress}}</p>
+        <p>{{workplace.adress}}</p>
         <p>{{workplace.phoneNumber}}</p>
-        <button ion-button clear item-end>View</button>
+        <button ion-button clear item-end (click)="viewStablishment(workplace.$key)">View</button>
       </ion-item>
-    </div>
   </ion-list>
 
 </ion-content>
