@@ -11,15 +11,43 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class EstablishmentsPage {
 
-  workplaces: FirebaseListObservable<Establishment[]>;
+  workplacesList = [];
+  //workplaces: FirebaseListObservable<Establishment[]>;
+  workplaces;
+  workplacesLoaded;
   establishmentPP = EstablishmentProfilePage;
+  establishmentsRef;
 
   constructor(public afDatabase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
-    this.workplaces = this.afDatabase.list(`workplaces`);
+    //this.workplaces = this.afDatabase.list(`workplaces`);
+
+    this.establishmentsRef = afDatabase.database.ref('/workplaces');
+
+    this.establishmentsRef.on('value', establishmentsList => {
+      let establishments: Establishment;
+      let files = [];
+      establishmentsList.forEach(establishment => {
+        establishment.val().key = establishment.key;
+
+        files.push({
+          $key: establishment.key, name: establishment.val().name, address: establishment.val().address
+          , phoneNumber: establishment.val().phoneNumber
+        });
+
+        return false;
+      });
+
+      this.workplaces = files;
+      this.workplacesLoaded = files;
+    });
   }
 
   ionViewDidLoad() {
 
+  }
+
+  initializeEstablishments() {
+    this.workplaces = this.workplacesLoaded;
   }
 
   viewStablishment(key: string) {
@@ -27,5 +55,24 @@ export class EstablishmentsPage {
     this.navCtrl.push(this.establishmentPP, { key });
   }
 
+  getItems(ev) {
+    this.initializeEstablishments();
+    // set val to the value of the ev target
+    var val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (!val) {
+      return;
+    }
+
+    this.workplaces = this.workplaces.filter((v) => {
+      if (v.name && val) {
+        if (v.name.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  }
 
 }
