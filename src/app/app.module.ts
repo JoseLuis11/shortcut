@@ -15,7 +15,7 @@ import { LoginPage,
   RegisterPage, 
   MyApp, 
   HomePage, 
-  ChangePasswordPage,
+  ConfigurationPage,
   EstablishmentsPage,
   EstablishmentProfilePage
 } from '../pages/index.pages'
@@ -30,7 +30,7 @@ import {AuthenticationService} from '../providers/index.prodivers'
     HomePage,
     LoginPage,
     RegisterPage, 
-    ChangePasswordPage,
+    ConfigurationPage,
     EstablishmentsPage,
     EstablishmentProfilePage
   ],
@@ -47,7 +47,7 @@ import {AuthenticationService} from '../providers/index.prodivers'
     HomePage,
     LoginPage,
     RegisterPage,
-    ChangePasswordPage,
+    ConfigurationPage,
     EstablishmentsPage,
     EstablishmentProfilePage
   ],

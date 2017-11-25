@@ -10,31 +10,18 @@ import { AuthenticationService } from './../../providers/authentication/authenti
 
 @IonicPage()
 @Component({
-  selector: 'page-change-password',
-  templateUrl: 'change-password.html',
+  selector: 'page-configuration',
+  templateUrl: 'configuration.html',
 })
-export class ChangePasswordPage {
-
-  currentPassword: string;
-  newPassword: string;
-  repeatedPassword: string;
+export class ConfigurationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,
     private loadingCtrl: LoadingController, private authService: AuthenticationService, private afDb: AngularFireDatabase,
     private toastCtrl: ToastController) {
 
-    this.currentPassword = '';
-    this.newPassword = '';
-    this.repeatedPassword = '';
-
   }
 
-  ionViewDidLoad() {
-
-
-  }
-
-
+  ionViewDidLoad() {  }
 
   changePassword() {
 
