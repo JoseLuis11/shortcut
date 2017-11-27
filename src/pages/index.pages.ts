@@ -5,3 +5,4 @@ export { HomePage } from '../pages/home/home';
 export { SettingsPage } from '../pages/settings/settings';
 export { EstablishmentsPage } from '../pages/establishments/establishments';
 export { EstablishmentProfilePage } from '../pages/establishment-profile/establishment-profile';
+export { MakeappointmentPage } from './makeappointment/makeappointment';

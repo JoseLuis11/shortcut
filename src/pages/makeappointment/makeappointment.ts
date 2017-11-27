@@ -1,12 +1,9 @@
+import { Service } from './../../interfaces/service.interface';
+import { Employee } from './../../interfaces/employee.interface';
+import { Establishment } from './../../interfaces/establishment.interface';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MakeappointmentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +12,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MakeappointmentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  establishments: FirebaseListObservable<Establishment[]>;
+  establishmentSelected: Establishment;
+  date;
+  employees: FirebaseListObservable<Employee[]>;
+  employeeSelected: Employee;
+  services: FirebaseListObservable<Service[]>;
+  serviceSelected: Service;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) {
+
+    this.establishments = this.afDatabase.list(`workplaces`);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MakeappointmentPage');
+  }
+
+  onChange(establishment) {
+    console.log(establishment.$key);
+    this.employees = this.afDatabase.list(`workplaces/${establishment.$key}/employees`);
+    console.log(this.employees);
   }
 
 }

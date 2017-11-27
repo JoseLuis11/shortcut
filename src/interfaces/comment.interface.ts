@@ -1,4 +1,5 @@
-export interface Comment{
-    clientName: string
-    text: string
+export interface Comment {
+    $key?: string;
+    clientName: string;
+    text: string;
 }

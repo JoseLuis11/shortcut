@@ -1,6 +1,8 @@
-export interface Appointment{
+export interface Appointment {
+    $key: string;
     date: string;
-    clientName: string
-    employeeName: string
-    workplaceName: string
+    clientName: string;
+    employeeName: string;
+    workplaceName: string;
+    payment: number;
 }

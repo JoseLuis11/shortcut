@@ -17,7 +17,8 @@ import { LoginPage,
   HomePage, 
   SettingsPage,
   EstablishmentsPage,
-  EstablishmentProfilePage
+  EstablishmentProfilePage,
+  MakeappointmentPage
 } from '../pages/index.pages'
 
 //services
@@ -32,7 +33,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     RegisterPage, 
     SettingsPage,
     EstablishmentsPage,
-    EstablishmentProfilePage
+    EstablishmentProfilePage,
+    MakeappointmentPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import {AuthenticationService} from '../providers/index.prodivers'
     RegisterPage,
     SettingsPage,
     EstablishmentsPage,
-    EstablishmentProfilePage
+    EstablishmentProfilePage,
+    MakeappointmentPage
   ],
   providers: [
     StatusBar,

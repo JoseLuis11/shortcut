@@ -20,22 +20,20 @@
 
   <ion-item>
     <ion-label>Sucursal</ion-label>
-    <ion-select [(ngModel)]="sucursal">
-      <ion-option value="f">Female</ion-option>
-      <ion-option value="m">Male</ion-option>
+    <ion-select [(ngModel)]="establishmentSelected">
+      <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onChange(establishment)" >{{establishment?.name}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
       <ion-label>Fecha</ion-label>
-       <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="myDate"></ion-datetime>
+       <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="date"></ion-datetime>
     </ion-item>
 
       <ion-item>
           <ion-label>Barbero o Estilista</ion-label>
-          <ion-select [(ngModel)]="gender">
-            <ion-option value="f">Female</ion-option>
-            <ion-option value="m">Male</ion-option>
+          <ion-select [(ngModel)]="employeeSelected">
+            <ion-option *ngFor="let employee of employees | async">{{employee.name}} {{employee.lastName}}</ion-option>
           </ion-select>
         </ion-item>
         

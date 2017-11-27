@@ -1,4 +1,5 @@
-export interface Owner{
+export interface Owner {
+    $key?: string;
     name: string
     lastName: string
     phoneNumber: string

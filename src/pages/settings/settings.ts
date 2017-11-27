@@ -1,3 +1,4 @@
+import { Profile } from './../../interfaces/profile.interface';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
@@ -15,13 +16,23 @@ import { AuthenticationService } from './../../providers/authentication/authenti
 })
 export class SettingsPage {
 
+    profile;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth,
         private loadingCtrl: LoadingController, private authService: AuthenticationService, private afDb: AngularFireDatabase,
         private toastCtrl: ToastController) {
 
     }
 
-    ionViewDidLoad() { }
+    ionViewDidLoad() {
+        this.afAuth.authState.take(1).subscribe(auth => {
+             this.afDb.object(`clients/${auth.uid}`).subscribe(client =>{
+                this.profile = client;
+             });
+
+             console.log(this.profile);
+          });
+     }
 
     changePassword() {
 

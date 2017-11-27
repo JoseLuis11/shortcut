@@ -1,3 +1,4 @@
+import { MakeappointmentPage } from './../pages/makeappointment/makeappointment';
 import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { EstablishmentsPage } from '../pages/establishments/establishments';
@@ -36,6 +37,10 @@ export class MyApp {
   logout() {
     this.nav.setRoot(LoginPage);
     this.menuCtrl.enable(false);    
+  }
+
+  makeAppointment(){
+    this.nav.setRoot(MakeappointmentPage);
   }
 
   home() {
