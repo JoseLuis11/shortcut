@@ -21,7 +21,7 @@
   <ion-item>
     <ion-label>Sucursal</ion-label>
     <ion-select [(ngModel)]="establishmentSelected">
-      <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onChange(establishment)" >{{establishment?.name}}</ion-option>
+      <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onEstablishmentChange(establishment)" >{{establishment?.name}}</ion-option>
     </ion-select>
   </ion-item>
 
@@ -36,15 +36,14 @@
       <ion-item>
           <ion-label>Barbero o Estilista</ion-label>
           <ion-select [(ngModel)]="employeeSelected">
-            <ion-option *ngFor="let employee of employees | async">{{employee.name}} {{employee.lastName}}</ion-option>
+            <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
           </ion-select>
         </ion-item>
         
         <ion-item>
             <ion-label>Servicio</ion-label>
-            <ion-select [(ngModel)]="gender">
-              <ion-option value="f">Female</ion-option>
-              <ion-option value="m">Male</ion-option>
+            <ion-select [(ngModel)]="serviceSelected">
+              <ion-option *ngFor="let service of services | async" (ionSelect)="onServiceChange(service)">{{service.name}} ${{service.price}}</ion-option>
             </ion-select>
           </ion-item>
           <button ion-button block outline>Agendar</button>

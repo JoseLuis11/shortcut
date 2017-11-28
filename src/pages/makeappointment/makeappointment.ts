@@ -34,11 +34,24 @@ export class MakeappointmentPage {
     console.log(this.today);
   }
 
-  onChange(establishment) {
+  onEstablishmentChange(establishment) {
     console.log(establishment.$key);
     this.employees = this.afDatabase.list(`workplaces/${establishment.$key}/employees`);
+    this.services = this.afDatabase.list(`workplaces/${establishment.$key}/services`);
     this.appointment.workplaceName = establishment.name;
     console.log(this.employees);
+  }
+
+  onEmployeeChange(employee) {
+    console.log(employee.$key);
+    this.appointment.employeeName = `${employee.name} ${employee.lastName}`;
+    console.log(this.appointment.employeeName);
+  }
+
+  onServiceChange(service) {
+    console.log(service.$key);
+    this.appointment.serviceName = service.name;
+    console.log(this.appointment.serviceName);
   }
 
 }
