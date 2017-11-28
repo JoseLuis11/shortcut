@@ -12,7 +12,7 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let workplace of workplaces">
+    <ion-item *ngFor="let workplace of workplaces" text-wrap>
       <ion-thumbnail item-start>
         <!-- dirección de imagen  -->
         <img src="../../assets/img/establishment.png">

@@ -19,15 +19,17 @@ export class MakeappointmentPage {
   employeeSelected: Employee;
   services: FirebaseListObservable<Service[]>;
   serviceSelected: Service;
+  today: String = new Date().toISOString().slice(0, 10);
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) {
-
+    
     this.establishments = this.afDatabase.list(`workplaces`);
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MakeappointmentPage');
+    console.log(this.today);
   }
 
   onChange(establishment) {

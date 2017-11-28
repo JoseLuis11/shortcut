@@ -2,12 +2,8 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { Establishment } from './../../interfaces/establishment.interface';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-/**
- * Generated class for the EstablishmentProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MakeappointmentPage } from '../../pages/makeappointment/makeappointment';
+
 
 @IonicPage()
 @Component({
@@ -36,8 +32,13 @@ export class EstablishmentProfilePage {
 
       }
       );
+      
 
 
+  }
+
+  makeAppointment(){
+    this.navCtrl.push(MakeappointmentPage);
   }
 
 }
