@@ -4,6 +4,7 @@ import { Establishment } from './../../interfaces/establishment.interface';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Appointment } from './../../interfaces/appointment.interface';
 
 @IonicPage()
 @Component({
@@ -20,9 +21,10 @@ export class MakeappointmentPage {
   services: FirebaseListObservable<Service[]>;
   serviceSelected: Service;
   today: String = new Date().toISOString().slice(0, 10);
+  appointment = {} as Appointment;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) {
-    
+
     this.establishments = this.afDatabase.list(`workplaces`);
 
   }
@@ -35,6 +37,7 @@ export class MakeappointmentPage {
   onChange(establishment) {
     console.log(establishment.$key);
     this.employees = this.afDatabase.list(`workplaces/${establishment.$key}/employees`);
+    this.appointment.workplaceName = establishment.name;
     console.log(this.employees);
   }
 
