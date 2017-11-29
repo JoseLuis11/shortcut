@@ -76,19 +76,20 @@ export class MakeappointmentPage {
     console.log(this.appointment.employeeName);
   }
 
-  onServiceChange(service) {
-    console.log(service.$key);
-    //this.appointment.serviceName = service.name;
-    //console.log(this.appointment.serviceName);
-  }
-
   onServiceSelected(ev, service){
+
+    //TODO: use a array to check if this service is in the appointment currently
+
     if(ev.checked){
       console.log(service.name);
     this.appointment.serviceNames.push(service.name);
     console.log(this.appointment.serviceNames);
 
     this.appointment.payment += service.price;
+    }else{
+
+      //TODO: the service was unchecked
+
     }
 
     
