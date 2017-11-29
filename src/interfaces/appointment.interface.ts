@@ -4,6 +4,6 @@ export interface Appointment {
     clientName: string;
     employeeName: string;
     workplaceName: string;
-    serviceName: string;
+    serviceNames: string[];
     payment: number;
 }

@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Agendar cita</ion-title>
   </ion-navbar>
 
@@ -20,33 +20,33 @@
 
   <ion-item>
     <ion-label>Sucursal</ion-label>
-    <ion-select [(ngModel)]="establishmentSelected">
-      <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onEstablishmentChange(establishment)" >{{establishment?.name}}</ion-option>
+    <ion-select [(ngModel)]="establishmentSelected" (ionCancel)='onEstablishmentCancel()'>
+      <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onEstablishmentChange(establishment)">{{establishment?.name}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-      <ion-label>Fecha</ion-label>
-       <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM DD, YYYY HH:mm" [min]="today" max="2019-12-31"
-       [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]" 
-       [minuteValues]="[00, 15, 30, 45]" 
-       [(ngModel)]="date"></ion-datetime>
-    </ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM DD, YYYY HH:mm" [min]="today" max="2019-12-31" [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
+      [minuteValues]="[00, 15, 30, 45]" [(ngModel)]="date"></ion-datetime>
+  </ion-item>
 
-      <ion-item>
-          <ion-label>Barbero o Estilista</ion-label>
-          <ion-select [(ngModel)]="employeeSelected">
-            <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
-          </ion-select>
-        </ion-item>
-        
-        <ion-item>
-            <ion-label>Servicio</ion-label>
-            <ion-select [(ngModel)]="serviceSelected">
-              <ion-option *ngFor="let service of services | async" (ionSelect)="onServiceChange(service)">{{service.name}} ${{service.price}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <button ion-button block outline>Agendar</button>
+  <ion-item>
+    <ion-label>Barbero o Estilista</ion-label>
+    <ion-select [(ngModel)]="employeeSelected" [disabled]="appointment.workplaceName.length<1">
+      <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Servicios</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let service of services | async">
+    <ion-label>{{service.name}} ${{service.price}}</ion-label>
+    <ion-checkbox color="dark" checked="false" (ionChange)="onServiceSelected($event, service)"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label right>Total: ${{appointment.payment}}</ion-label>
+  </ion-item>
+  <button ion-button block outline>Agendar</button>
 </ion-content>
-
-

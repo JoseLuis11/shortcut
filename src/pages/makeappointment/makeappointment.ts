@@ -5,6 +5,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Appointment } from './../../interfaces/appointment.interface';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -23,10 +24,23 @@ export class MakeappointmentPage {
   today: String = new Date().toISOString().slice(0, 10);
   appointment = {} as Appointment;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase,
+              public afAuth: AngularFireAuth) {
 
     this.establishments = this.afDatabase.list(`workplaces`);
 
+    this.appointment.workplaceName = '';
+    this.appointment.employeeName = '';
+    this.appointment.serviceNames = [];
+    this.appointment.payment = 0;
+
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDatabase.object(`clients/${auth.uid}`).subscribe(client =>{
+         this.appointment.clientName = `${client.firstName} ${client.lastName}`;
+      });
+
+      
+   });
   }
 
   ionViewDidLoad() {
@@ -39,7 +53,21 @@ export class MakeappointmentPage {
     this.employees = this.afDatabase.list(`workplaces/${establishment.$key}/employees`);
     this.services = this.afDatabase.list(`workplaces/${establishment.$key}/services`);
     this.appointment.workplaceName = establishment.name;
+    this.employeeSelected = null;
+
+    this.afDatabase.list(`workplaces/${establishment.$key}/services`, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+          console.log(snapshot.key, snapshot.val().name);
+        });
+    })
+
     console.log(this.employees);
+  }
+
+  onEstablishmentCancel(){
+    this.services = undefined;
+    this.appointment.workplaceName = '';
   }
 
   onEmployeeChange(employee) {
@@ -50,8 +78,20 @@ export class MakeappointmentPage {
 
   onServiceChange(service) {
     console.log(service.$key);
-    this.appointment.serviceName = service.name;
-    console.log(this.appointment.serviceName);
+    //this.appointment.serviceName = service.name;
+    //console.log(this.appointment.serviceName);
+  }
+
+  onServiceSelected(ev, service){
+    if(ev.checked){
+      console.log(service.name);
+    this.appointment.serviceNames.push(service.name);
+    console.log(this.appointment.serviceNames);
+
+    this.appointment.payment += service.price;
+    }
+
+    
   }
 
 }
