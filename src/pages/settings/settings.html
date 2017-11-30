@@ -1,18 +1,20 @@
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
-                <ion-icon name="menu"></ion-icon>
-          </button>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>Configuración</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
-    <p>{{profile?.firstName}} {{profile?.lastName}}</p>
-
-    <button ion-button block (click)="changePassword()">
-              Solicitar cambio de contraseña        
-        </button>
+    <ion-item no-lines>
+        <ion-icon name="contact" item-start large></ion-icon>
+        <h2>{{profile?.firstName}} {{profile?.lastName}}</h2>
+    </ion-item>
+    <br>
+    <button ion-button block color="secondary" (click)="changePassword()">
+        Solicitar cambio de contraseña
+    </button>
 </ion-content>
