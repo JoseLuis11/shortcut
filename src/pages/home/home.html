@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
       Inicio
@@ -9,6 +9,48 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <img padding src="assets/img/small_logo.svg">
+<ion-content>
+
+  <ion-title>
+    Tu siguiente cita
+  </ion-title>
+
+  <ion-card>
+
+    <ion-list>
+      <ion-item>
+        <ion-avatar item-start large>
+          <img src="assets/img/small_logo.svg">
+        </ion-avatar>
+        <!-- <h2>{{appointment.workplaceName}}</h2> -->
+        <!-- <p>{{appointment.employeeName}}</p> -->
+      </ion-item>
+    </ion-list>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <!-- <h2>{{apointment.date}}</h2> -->
+      </ion-item>
+
+      <ion-list no-lines>
+        <!-- TODO:add *ngFor in ion-item to show the services -->
+        <ion-item>
+          <ion-icon name="cut" item-left></ion-icon>
+          <!-- <h2>{{appointment.service}}</h2> -->
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-item>
+          <ion-icon name="logo-usd" item-left></ion-icon>
+          <!-- <h3>TODO:Agregar total</h3> -->
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
