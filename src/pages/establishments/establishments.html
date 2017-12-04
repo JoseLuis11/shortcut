@@ -12,14 +12,13 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let workplace of workplaces" text-wrap>
+    <ion-item *ngFor="let workplace of workplaces; let i = index" text-wrap>
       <ion-thumbnail item-start>
         <!-- dirección de imagen  -->
-        <img src="assets/img/shortcut.svg">
+        <img src="assets/img/{{logos[i]}}">
       </ion-thumbnail>
       <h2>{{workplace.name}}</h2>
       <p>{{workplace.address}}</p>
-      <p>{{workplace.phoneNumber}}</p>
       <button ion-button clear item-end (click)="viewStablishment(workplace.$key)">View</button>
     </ion-item>
   </ion-list>

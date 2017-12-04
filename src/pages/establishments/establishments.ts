@@ -11,6 +11,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 })
 export class EstablishmentsPage {
 
+  logos = ["barbershop1.jpg", "lipstick.jpg", "themancave.png", "barbershop2.jpg", "barbershop3.jpg", "barbershop4.jpg"];
   workplacesList = [];
   //workplaces: FirebaseListObservable<Establishment[]>;
   workplaces;

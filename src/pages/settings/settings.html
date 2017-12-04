@@ -9,12 +9,9 @@
 
 
 <ion-content padding>
-    <ion-item no-lines>
-        <ion-icon name="contact" item-start large></ion-icon>
-        <h2>{{profile?.firstName}} {{profile?.lastName}}</h2>
-    </ion-item>
+    <h4>{{profile?.firstName}} {{profile?.lastName}}</h4>
     <br>
-    <button ion-button block color="secondary" (click)="changePassword()">
+    <button ion-button block color="dark" (click)="changePassword()">
         Solicitar cambio de contraseña
     </button>
 </ion-content>

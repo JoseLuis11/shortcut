@@ -19,35 +19,38 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label>Sucursal</ion-label>
+    <ion-label color="dark">Sucursal</ion-label>
     <ion-select [(ngModel)]="establishmentSelected" (ionCancel)='onEstablishmentCancel()'>
       <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onEstablishmentChange(establishment)">{{establishment?.name}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label>Fecha</ion-label>
-    <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM DD, YYYY HH:mm" [min]="today" max="2019-12-31" [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
-      [minuteValues]="[00, 15, 30, 45]" [(ngModel)]="appointment.date"></ion-datetime>
+    <ion-label color="dark">Fecha</ion-label>
+    <ion-datetime displayFormat="DDDD DD de MMM, YYYY - h:mm A" pickerFormat="MMM DD, YYYY HH:mm" [min]="today" max="2018-12-31"
+      [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]" [minuteValues]="[00, 15, 30, 45]" [(ngModel)]="appointment.date"></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label>Barbero o Estilista</ion-label>
+    <ion-label color="dark">Barbero o Estilista</ion-label>
     <ion-select [(ngModel)]="employeeSelected" (ionCancel)='onEmployeeCancel()' [disabled]="appointment.workplaceName.length<1">
       <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label>Servicios</ion-label>
+    <ion-label color="dark">Servicios</ion-label>
   </ion-item>
+
   <ion-item *ngFor="let service of services | async">
-    <ion-label>{{service.name}} ${{service.price}}</ion-label>
+    <ion-label color="dark">{{service.name}} ${{service.price}}</ion-label>
     <ion-checkbox color="dark" checked="false" (ionChange)="onServiceSelected(service)"></ion-checkbox>
   </ion-item>
+
   <ion-item>
-    <ion-label right>Total: ${{appointment.payment}}</ion-label>
+    <ion-label color="dark" right>Total: ${{appointment.payment}}</ion-label>
   </ion-item>
+
   <button [disabled]="appointment.workplaceName.length<1  || appointment.employeeName.length < 1 || appointment.date.length < 1
                       || appointment.serviceNames.length < 1" (click)="makeAppointment()" ion-button block outline>Agendar</button>
 </ion-content>

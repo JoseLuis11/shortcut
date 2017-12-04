@@ -15,8 +15,6 @@ export class EstablishmentProfilePage {
   establishmentKey;
   establishment;
 
-
-
   constructor(public afDatabase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -32,9 +30,6 @@ export class EstablishmentProfilePage {
 
       }
       );
-      
-
-
   }
 
   makeAppointment(){

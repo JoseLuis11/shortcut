@@ -23,11 +23,37 @@ export class MakeappointmentPage {
   employeeSelected: Employee;
   services: FirebaseListObservable<Service[]>;
   serviceSelected: Service;
-  today: String = new Date().toISOString().slice(0, 10);
+  date = new Date();
+  year: string;
+  month: string;
+  day: string;
+  hour: string;
+  minute: string;
+  today: string;
+  display_date: Date;
+  name_day: string;
+
+
   appointment = {} as Appointment;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+    this.year = this.date.getFullYear().toString();
+    console.log(this.year);
+    this.month = (this.date.getMonth() + 1).toString();
+    this.day = (this.date.getDate().toString());
+    if (this.day.length == 1) {
+      this.day = '0' + this.day;
+    }
+    this.hour = this.date.getHours().toString();
+    if (this.hour.length == 1) {
+      this.hour = '0' + this.hour;
+    }
+    this.minute = this.date.getMinutes().toString();
+    if (this.minute.length == 1) {
+      this.minute = '0' + this.minute;
+    }
+    this.today = this.year + '-' + this.month + '-' + this.day + 'T' + this.hour + ':' + this.minute + ':00.000Z';
 
     this.establishments = this.afDatabase.list(`workplaces`);
 
@@ -106,8 +132,9 @@ export class MakeappointmentPage {
 
   makeAppointment() {
 
-    this.appointment.date = this.appointment.date.replace("T", " ");
-    this.appointment.date = this.appointment.date.replace("Z", "");
+    // this.appointment.date = this.appointment.date.replace("T", " ");
+    // this.appointment.date = this.appointment.date.replace("Z", "");
+    this.displayDateFormat();
 
     let loading = this.loadingCtrl.create({
       content: 'Agendando cita...'
@@ -124,6 +151,89 @@ export class MakeappointmentPage {
         console.log(error);
       })
     })
+  }
+
+
+  displayDateFormat() {
+    //2018-01-01T08:00:00Z
+    this.display_date = new Date(this.appointment.date);
+
+    //Year
+    this.year = this.display_date.getFullYear().toString();
+
+    //Month
+    switch (this.display_date.getMonth()) {
+      case 0:
+        this.month = 'enero';
+        break;
+      case 1:
+        this.month = 'febrero';
+        break;
+      case 2:
+        this.month = 'marzo';
+        break;
+      case 3:
+        this.month = 'abril';
+        break;
+      case 4:
+        this.month = 'mayo';
+        break;
+      case 5:
+        this.month = 'junio';
+        break;
+      case 6:
+        this.month = 'julio';
+        break;
+      case 7:
+        this.month = 'agosto';
+        break;
+      case 8:
+        this.month = 'septiembre';
+        break;
+      case 9:
+        this.month = 'octubre';
+        break;
+      case 10:
+        this.month = 'noviembre';
+        break;
+      case 11:
+        this.month = 'diciembre';
+        break;
+      default:
+        break;
+    }
+
+    //Day
+    this.day = (this.display_date.getDate().toString());
+
+    //Day name
+    switch (this.display_date.getDay()) {
+      case 0:
+        this.name_day = 'Domingo';
+        break;
+      case 1:
+        this.name_day = 'Lunes';
+        break;
+      case 2:
+        this.name_day = 'Martes';
+        break;
+      case 3:
+        this.name_day = 'Miércoles';
+        break;
+      case 4:
+        this.name_day = 'Jueves';
+        break;
+      case 5:
+        this.name_day = 'Viernes';
+        break;
+      case 6:
+        this.name_day = 'Sábado';
+        break;
+      default:
+        break;
+    }
+
+    this.appointment.date = this.appointment.date + ' ' + this.name_day + ', ' + this.day + ' de ' + this.month + ' del ' + this.year;
   }
 
   private showToast(text: string) {

@@ -4,14 +4,14 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Tu cita
+      Agenda
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card>
+  <!-- <ion-card>
 
     <ion-list>
       <ion-item>
@@ -25,24 +25,53 @@
 
     <ion-card-content>
 
-      <ion-item>
-        <ion-icon name="calendar" item-left></ion-icon>
-        <h2>{{appointment?.date}}</h2>
-      </ion-item>
-
       <ion-list no-lines>
+        <ion-item>
+          <ion-icon name="calendar" color="dark-gray" item-left></ion-icon>
+          <h2>{{appointment?.date}}</h2>
+        </ion-item>
+
         <ion-item *ngFor="let service of appointment?.serviceNames">
-          <ion-icon name="cut" item-left></ion-icon>
+          <ion-icon color="dark-gray" name="cut" item-left></ion-icon>
           <h2>{{service}}</h2>
         </ion-item>
-      </ion-list>
 
-      <ion-list>
         <ion-item>
-          <ion-icon name="logo-usd" item-left></ion-icon>
+          <ion-icon color="dark-gray" name="logo-usd" item-left></ion-icon>
           <h3>{{appointment?.payment}} MXN</h3>
         </ion-item>
       </ion-list>
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-card>
+    <img src="assets/img/barbershop3_cover.jpg" />
+
+    <ion-card-content>
+      <ion-card-title>
+        Cita
+      </ion-card-title>
+
+      <ion-item text-wrap>
+        <ion-icon name="calendar" color="dark-gray" item-left></ion-icon>
+        {{appointment?.date.slice(21)}} <br> {{appointment?.date.slice(11,16)}}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="pin" color="dark-gray" item-left></ion-icon>
+        {{appointment?.workplaceName}}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="dark-gray" name="cut" item-left></ion-icon>
+        <h2 *ngFor="let service of appointment?.serviceNames">{{service}}</h2>
+
+      </ion-item>
+      <ion-item>
+        <ion-icon color="dark-gray" name="logo-usd" item-left></ion-icon>
+        {{appointment?.payment}} MXN
+      </ion-item>
+
 
     </ion-card-content>
 

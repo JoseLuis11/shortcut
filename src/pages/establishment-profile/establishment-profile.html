@@ -10,35 +10,15 @@
 </ion-header>
 
 <ion-content padding>
-
-  <!--   <img padding src="../../assets/img/establishment.png">
-
-  <button ion-button icon-only>
-    <ion-icon name="calendar"></ion-icon>
-  </button>
-  <button ion-button icon-only>
-      <ion-icon name="pin"></ion-icon>
-  </button>
-  <button ion-button icon-only>
-        <ion-icon name="call"></ion-icon>
-  </button>
-
-
-  <p item-start> </p>
-  <h6>Teléfono {{establishment?.phoneNumber}}</h6>
-  <p address item-start> {{establishment?.address}}</p> -->
-
-
-
   <ion-card>
 
-    <img src="assets/img/barbershop.jpg" />
+    <img src="assets/img/barbershop1_cover.jpg"/>
 
     <ion-card-content>
       <ion-card-title>
         {{establishment?.name}}
       </ion-card-title>
-      <p>{{establishment?.address}} <br>{{establishment?.phoneNumber}} </p>
+      <h2>{{establishment?.address}} <br>{{establishment?.phoneNumber}} </h2>
     </ion-card-content>
 
     <ion-row no-padding>
@@ -48,22 +28,17 @@
             </button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button clear icon-only>
-              <ion-icon name='pin'></ion-icon>
-            </button>
+        <a href="https://maps.google.com/?q={{establishment?.name}}" ion-button clear icon-only>
+          <ion-icon name='pin'></ion-icon>
+        </a>
       </ion-col>
       <ion-col text-left>
         <a href="tel:{{establishment?.phoneNumber}}" ion-button clear icon-only>
-              <ion-icon name='call'></ion-icon>
+          <ion-icon name='call'></ion-icon>
         </a>
       </ion-col>
     </ion-row>
 
   </ion-card>
-
-
-
-
-
 
 </ion-content>

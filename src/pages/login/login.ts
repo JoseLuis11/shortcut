@@ -18,24 +18,24 @@ export class LoginPage {
   registerPage = RegisterPage;
   user = {} as UserModel;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController, 
-    private authService: AuthenticationService, private menuCtrl: MenuController,  private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
+    private authService: AuthenticationService, private menuCtrl: MenuController, private toastCtrl: ToastController) {
     this.user.email = "";
     this.user.password = "";
     this.menuCtrl.enable(false);
   }
 
-  login(){
+  login() {
     let loading = this.loadingCtrl.create({
       content: 'Iniciando sesión. Por favor, espere...'
     });
     loading.present();
 
-    this.authService.signInWithEmailAndPassword(this.user).then(result=>{
+    this.authService.signInWithEmailAndPassword(this.user).then(result => {
       loading.dismiss();
       this.menuCtrl.enable(true);
       this.navCtrl.setRoot(HomePage);
-    }).catch(error =>{
+    }).catch(error => {
       loading.dismiss();
       if (error.message.includes("There is no user record corresponding to this identifier")) {
         this.showToast('Usuario inexistente.');
