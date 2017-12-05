@@ -50,6 +50,9 @@ export class RegisterPage {
           this.showToast("El email tiene un formato erroneo.");
         } else if (error.message.includes("The email address is already in use by another account.")) {
           this.showToast("Este email está en uso actualmente.");
+
+        } else if (error.message.includes("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
+          this.showToast('No hay conexión a internet.');
         } else {
           console.log(error);
           this.showToast("Ha ocurrido un error inesperado. Por favor intente nuevamente.")

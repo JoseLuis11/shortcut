@@ -44,7 +44,7 @@
     </ion-card-content>
   </ion-card> -->
 
-  <ion-card>
+  <ion-card *ngIf="theresAppointment" >
     <ion-item>
       <ion-avatar item-start>
         <img src="assets/img/barber.jpg">
@@ -57,7 +57,7 @@
     <ion-card-content>
       <ion-item text-wrap>
         <ion-icon name="calendar" color="dark-gray" item-left></ion-icon>
-        {{appointment?.date.slice(21)}} <br> {{appointment?.date.slice(11,16)}}
+        {{hour}} <br> {{day}}
       </ion-item>
 
       <ion-item>
@@ -77,6 +77,15 @@
 
 
     </ion-card-content>
+
+  </ion-card>
+
+  <ion-card *ngIf="!theresAppointment" >
+    <img src="assets/img/small_logo.svg">
+    <br>
+    <h1 text-center>No tienes una cita!</h1>
+    <br>
+    <button ion-button block (click)="makeAppointment()">Agendar cita</button>
 
   </ion-card>
 
