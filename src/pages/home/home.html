@@ -45,13 +45,16 @@
   </ion-card> -->
 
   <ion-card>
-    <img src="assets/img/barbershop3_cover.jpg" />
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/barber.jpg">
+      </ion-avatar>
+      <h2>{{appointment?.employeeName}}</h2>
+      <p>Barbero</p>
+    </ion-item>
+    <img src="assets/img/barbershop2_cover.jpg" />
 
     <ion-card-content>
-      <ion-card-title>
-        Cita
-      </ion-card-title>
-
       <ion-item text-wrap>
         <ion-icon name="calendar" color="dark-gray" item-left></ion-icon>
         {{appointment?.date.slice(21)}} <br> {{appointment?.date.slice(11,16)}}
