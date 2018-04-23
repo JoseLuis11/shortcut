@@ -151,6 +151,7 @@ export class MakeappointmentPage {
         //TODO: no lo haga compa
         this.appointmentsRef.push(this.appointment).then(ref => {
           this.afDatabase.object(`appointments/${ref.key}`).set(this.appointment).then(() => {
+            loading.dismiss();
           }).catch(error => {
             console.log(error);
           })
