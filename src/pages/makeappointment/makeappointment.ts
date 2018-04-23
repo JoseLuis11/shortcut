@@ -161,7 +161,7 @@ export class MakeappointmentPage {
       this.showToast("Algo salió mal, intentalo de nuevo.");
       console.log(error);
     })
-  })
+  
 }
 
 
