@@ -34,7 +34,7 @@
   <ion-item>
     <ion-label color="dark">Barbero o Estilista</ion-label>
     <ion-select [(ngModel)]="employeeSelected" (ionCancel)='onEmployeeCancel()' [disabled]="appointment.workplaceName.length<1">
-      <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
+      <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.firstName}} {{employee.lastName}}</ion-option>
     </ion-select>
   </ion-item>
 

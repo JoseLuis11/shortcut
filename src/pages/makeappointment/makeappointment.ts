@@ -109,7 +109,7 @@ export class MakeappointmentPage {
 
   onEmployeeChange(employee) {
     console.log(employee.$key);
-    this.appointment.employeeName = `${employee.name} ${employee.lastName}`;
+    this.appointment.employeeName = `${employee.firstName} ${employee.lastName}`;
     console.log(this.appointment.employeeName);
   }
 
