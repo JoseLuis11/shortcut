@@ -110,7 +110,7 @@ export class MakeappointmentPage {
 
   onEmployeeChange(employee) {
     console.log(employee.$key);
-    this.appointment.employeeName = `${employee.name} ${employee.lastName}`;
+    this.appointment.employeeName = `${employee.firstName} ${employee.lastName}`;
     console.log(this.appointment.employeeName);
   }
 
@@ -152,6 +152,7 @@ export class MakeappointmentPage {
         this.appointmentsRef.push(this.appointment).then(ref => {
           this.afDatabase.object(`appointments/${ref.key}`).set(this.appointment).then(() => {
             loading.dismiss();
+            this.navCtrl.setRoot(HomePage);
           }).catch(error => {
             console.log(error);
           })
