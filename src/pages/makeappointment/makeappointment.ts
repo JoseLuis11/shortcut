@@ -146,8 +146,17 @@ export class MakeappointmentPage {
 
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`clients/${auth.uid}/appointment`).set(this.appointment).then(() => {
-        loading.dismiss();
-        this.navCtrl.setRoot(HomePage);
+        //TODO: no lo haga compa
+        this.afAuth.authState.take(1).subscribe(auth => {
+          this.afDatabase.object(`appointments/`).set(this.appointment).then(() => {
+            loading.dismiss();
+            this.navCtrl.setRoot(HomePage);
+          }).catch(error => {
+            loading.dismiss();
+            this.showToast("Algo salió mal, intentalo de nuevo.");
+            console.log(error);
+          })
+        })
       }).catch(error => {
         loading.dismiss();
         this.showToast("Algo salió mal, intentalo de nuevo.");
