@@ -110,7 +110,7 @@ export class MakeappointmentPage {
 
   onEmployeeChange(employee) {
     console.log(employee.$key);
-    this.appointment.employeeName = `${employee.firstName} ${employee.lastName}`;
+    this.appointment.employeeName = `${employee.name} ${employee.lastName}`;
     console.log(this.appointment.employeeName);
   }
 
@@ -155,105 +155,104 @@ export class MakeappointmentPage {
             console.log(error);
           })
         })
+      }).catch(error => {
+        loading.dismiss();
+        this.showToast("Algo salió mal, intentalo de nuevo.");
+        console.log(error);
       })
-    }).catch(error => {
-      loading.dismiss();
-      this.showToast("Algo salió mal, intentalo de nuevo.");
-      console.log(error);
     })
-  
-}
-
-
-displayDateFormat() {
-  //2018-01-01T08:00:00Z
-  this.display_date = new Date(this.appointment.date);
-
-  //Year
-  console.log(this.year + "Helllooooo");
-  this.year = this.display_date.getFullYear().toString();
-
-  //Month
-  switch (this.display_date.getMonth()) {
-    case 0:
-      this.month = 'enero';
-      break;
-    case 1:
-      this.month = 'febrero';
-      break;
-    case 2:
-      this.month = 'marzo';
-      break;
-    case 3:
-      this.month = 'abril';
-      break;
-    case 4:
-      this.month = 'mayo';
-      break;
-    case 5:
-      this.month = 'junio';
-      break;
-    case 6:
-      this.month = 'julio';
-      break;
-    case 7:
-      this.month = 'agosto';
-      break;
-    case 8:
-      this.month = 'septiembre';
-      break;
-    case 9:
-      this.month = 'octubre';
-      break;
-    case 10:
-      this.month = 'noviembre';
-      break;
-    case 11:
-      this.month = 'diciembre';
-      break;
-    default:
-      break;
   }
 
-  //Day
-  this.day = (this.display_date.getDate().toString());
 
-  //Day name
-  switch (this.display_date.getDay()) {
-    case 0:
-      this.name_day = 'Domingo';
-      break;
-    case 1:
-      this.name_day = 'Lunes';
-      break;
-    case 2:
-      this.name_day = 'Martes';
-      break;
-    case 3:
-      this.name_day = 'Miércoles';
-      break;
-    case 4:
-      this.name_day = 'Jueves';
-      break;
-    case 5:
-      this.name_day = 'Viernes';
-      break;
-    case 6:
-      this.name_day = 'Sábado';
-      break;
-    default:
-      break;
+  displayDateFormat() {
+    //2018-01-01T08:00:00Z
+    this.display_date = new Date(this.appointment.date);
+
+    //Year
+    console.log(this.year + "Helllooooo");
+    this.year = this.display_date.getFullYear().toString();
+
+    //Month
+    switch (this.display_date.getMonth()) {
+      case 0:
+        this.month = 'enero';
+        break;
+      case 1:
+        this.month = 'febrero';
+        break;
+      case 2:
+        this.month = 'marzo';
+        break;
+      case 3:
+        this.month = 'abril';
+        break;
+      case 4:
+        this.month = 'mayo';
+        break;
+      case 5:
+        this.month = 'junio';
+        break;
+      case 6:
+        this.month = 'julio';
+        break;
+      case 7:
+        this.month = 'agosto';
+        break;
+      case 8:
+        this.month = 'septiembre';
+        break;
+      case 9:
+        this.month = 'octubre';
+        break;
+      case 10:
+        this.month = 'noviembre';
+        break;
+      case 11:
+        this.month = 'diciembre';
+        break;
+      default:
+        break;
+    }
+
+    //Day
+    this.day = (this.display_date.getDate().toString());
+
+    //Day name
+    switch (this.display_date.getDay()) {
+      case 0:
+        this.name_day = 'Domingo';
+        break;
+      case 1:
+        this.name_day = 'Lunes';
+        break;
+      case 2:
+        this.name_day = 'Martes';
+        break;
+      case 3:
+        this.name_day = 'Miércoles';
+        break;
+      case 4:
+        this.name_day = 'Jueves';
+        break;
+      case 5:
+        this.name_day = 'Viernes';
+        break;
+      case 6:
+        this.name_day = 'Sábado';
+        break;
+      default:
+        break;
+    }
+
+    this.appointment.date = this.appointment.date + ' ' + this.name_day + ', ' + this.day + ' de ' + this.month + ' del ' + this.year;
   }
-
-  this.appointment.date = this.appointment.date + ' ' + this.name_day + ', ' + this.day + ' de ' + this.month + ' del ' + this.year;
-}
 
   private showToast(text: string) {
-  this.toastCtrl.create({
-    message: text,
-    duration: 2500
+    this.toastCtrl.create({
+      message: text,
+      duration: 2500
 
-  }).present();
-}
+    }).present();
+  }
 
 }
