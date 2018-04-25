@@ -150,6 +150,7 @@ export class MakeappointmentPage {
       this.afDatabase.object(`clients/${auth.uid}/appointment`).set(this.appointment).then(() => {
         //TODO: no lo haga compa
         this.appointmentsRef.push(this.appointment).then(ref => {
+          this.appointment.k = ref.key;
           this.afDatabase.object(`appointments/${ref.key}`).set(this.appointment).then(() => {
             loading.dismiss();
             this.navCtrl.setRoot(HomePage);
