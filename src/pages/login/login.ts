@@ -2,6 +2,10 @@ import { RegisterPage } from './../register/register';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, MenuController, ToastController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+//validators
+import { ValidationMessages } from '../../validators/index.validators';
 
 //models
 import { UserModel } from './../../interfaces/user.interface';
@@ -17,12 +21,26 @@ export class LoginPage {
 
   registerPage = RegisterPage;
   user = {} as UserModel;
+  loginform:FormGroup;
+  validation_messages = ValidationMessages;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
-    private authService: AuthenticationService, private menuCtrl: MenuController, private toastCtrl: ToastController) {
+    private authService: AuthenticationService, private menuCtrl: MenuController, private toastCtrl: ToastController,
+  public formBuilder: FormBuilder) {
+
     this.user.email = "";
     this.user.password = "";
     this.menuCtrl.enable(false);
+
+    this.loginform = new FormGroup({
+      email: new FormControl('',[
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]),
+      password: new FormControl('',
+      [Validators.minLength(6),
+        Validators.required])
+    });
   }
 
   login() {

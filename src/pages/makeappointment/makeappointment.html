@@ -17,12 +17,14 @@
 
 
 <ion-content padding>
-
   <ion-item>
     <ion-label color="dark">Sucursal</ion-label>
     <ion-select [(ngModel)]="establishmentSelected" (ionCancel)='onEstablishmentCancel()'>
       <ion-option *ngFor="let establishment of establishments | async" (ionSelect)="onEstablishmentChange(establishment)">{{establishment?.name}}</ion-option>
     </ion-select>
+  </ion-item>
+  <ion-item no-lines *ngIf="appointment.workplaceName.length<1">
+    <p ion-text color="primary">Se necesita selecionar una sucursal.</p>
   </ion-item>
 
   <ion-item>
@@ -30,12 +32,18 @@
     <ion-datetime displayFormat="DDDD DD de MMM, YYYY - h:mm A" pickerFormat="MMM DD, YYYY HH:mm" [min]="today" max="2018-12-31"
       [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]" [minuteValues]="[00, 15, 30, 45]" [(ngModel)]="appointment.date"></ion-datetime>
   </ion-item>
+  <ion-item no-lines *ngIf="appointment.date.length < 1">
+    <p ion-text color="primary">Escoge una fecha.</p>
+  </ion-item>
 
   <ion-item>
     <ion-label color="dark">Barbero o Estilista</ion-label>
     <ion-select [(ngModel)]="employeeSelected" (ionCancel)='onEmployeeCancel()' [disabled]="appointment.workplaceName.length<1">
       <ion-option *ngFor="let employee of employees | async" (ionSelect)="onEmployeeChange(employee)">{{employee.name}} {{employee.lastName}}</ion-option>
     </ion-select>
+  </ion-item>
+  <ion-item no-lines *ngIf="appointment.employeeName.length < 1">
+    <p ion-text color="primary">Selecciona un empleado.</p>
   </ion-item>
 
   <ion-item>
@@ -45,6 +53,9 @@
   <ion-item *ngFor="let service of services | async">
     <ion-label color="dark">{{service.name}} ${{service.price}}</ion-label>
     <ion-checkbox color="dark" checked="false" (ionChange)="onServiceSelected(service)"></ion-checkbox>
+  </ion-item>
+  <ion-item no-lines *ngIf="appointment.serviceNames.length < 1">
+    <p ion-text color="primary">Seleciona una sucursal.</p>
   </ion-item>
 
   <ion-item>

@@ -1,49 +1,115 @@
 <ion-content padding>
   <img padding src="assets/img/small_logo.svg">
   <ion-list>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Nombre</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="profile.firstName" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Apellido</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="profile.lastName" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Correo electrónico</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Teléfono</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="profile.phoneNumber" type="number"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Contraseña</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>
-        <h6>Repetir contraseña</h6>
-      </ion-label>
-      <ion-input [(ngModel)]="repeatedPassword" type="password"></ion-input>
-    </ion-item>
-    <div padding><br>
+    <form [formGroup]="signupform">
+
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Nombre</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="profile.firstName" formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('name').hasError('minlength') || signupform.get('name').hasError('pattern') ||signupform.get('name').hasError('required') ) && signupform.get('name').touched">
+        <p ion-text color="danger" *ngIf="signupform.get('name').hasError('required') && signupform.get('name').touched">
+          Se requiere un nombre.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('name').hasError('minlength') && signupform.get('name').touched">
+          Se requiere minimo 2 caracteres.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('name').hasError('pattern') && signupform.get('name').touched">
+          Solo caracteres del abecedario.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Apellido</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="profile.lastName" formControlName="lastname" type="text"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('lastname').hasError('minlength') || signupform.get('lastname').hasError('pattern') ||signupform.get('lastname').hasError('required') ) && signupform.get('lastname').touched">
+        <p ion-text color="danger" *ngIf="signupform.get('lastname').hasError('required') && signupform.get('lastname').touched">
+          Se requiere un nombre.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('lastname').hasError('minlength') && signupform.get('lastname').touched">
+          Se requiere minimo 2 caracteres.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('lastname').hasError('pattern') && signupform.get('lastname').touched">
+          Solo caracteres del abecedario.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Correo electrónico</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="user.email" formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('email').hasError('pattern') || signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+        <p ion-text color="danger" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+          Se requiere un email valido.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+          Email invalido.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Teléfono</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="profile.phoneNumber" formControlName="phone" type="number"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('phone').hasError('minlength') || signupform.get('phone').hasError('required') ) && signupform.get('phone').touched">
+        <p ion-text color="danger" *ngIf="signupform.get('phone').hasError('required') && signupform.get('phone').touched">
+          Se requiere un numero celular.
+        </p>
+        <p ion-text color="danger" *ngIf="signupform.get('phone').hasError('minlength') && signupform.get('phone').touched">
+          Se requiere un numero minimo de 10 digitos.
+        </p>
+      </ion-item>
+
+    </form>
+
+    <form [formGroup]="matching_passwords_group">
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Contraseña</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="user.password" formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( matching_passwords_group.get('password').hasError('minlength') || matching_passwords_group.get('password').hasError('required') ) && matching_passwords_group.get('password').touched">
+        <p ion-text color="danger" *ngIf="matching_passwords_group.get('password').hasError('required') && matching_passwords_group.get('password').touched">
+          Se requiere una contraseña.
+        </p>
+        <p ion-text color="danger" *ngIf="matching_passwords_group.get('password').hasError('minlength') && matching_passwords_group.get('password').touched">
+          Se requiere minimo 6 caracteres.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" floating>
+          <h6>Repetir contraseña</h6>
+        </ion-label>
+        <ion-input [(ngModel)]="repeatedPassword" formControlName="confirm_password" type="password"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( matching_passwords_group.get('confirm_password').hasError('required') || matching_passwords_group.get('confirm_password').hasError('areEqual') ) && matching_passwords_group.get('confirm_password').touched">
+        <p ion-text color="danger" *ngIf="matching_passwords_group.get('confirm_password').hasError('required') && matching_passwords_group.get('confirm_password').touched">
+          Confirma tu contraseña.
+          <p ion-text color="danger" *ngIf="matching_passwords_group.get('confirm_password').hasError('areEqual') && matching_passwords_group.get('confirm_password').touched">
+            Las contraseñas no coinciden.
+          </p>
+      </ion-item>
+
+    </form>
+    <div padding>
+      <br>
       <ion-buttons>
         <button ion-button block color="dark" icon-right [disabled]="!user.email.includes('@') || !user.email.includes('.') 
           ||user.email.length<5 || profile.firstName.length<2 || profile.lastName.length<2 || user.password.length<6 
           || profile.phoneNumber.length<10" (click)="addUser()" ion-button>
-        CREAR CUENTA
-        <ion-icon name="ios-log-in-outline"></ion-icon>
+          CREAR CUENTA
+          <ion-icon name="ios-log-in-outline"></ion-icon>
         </button>
       </ion-buttons>
     </div>
@@ -52,6 +118,8 @@
 
 <ion-footer>
   <ion-toolbar>
-    <p text-center>¿Ya estás registrado? <a navPop>Inicia Sesión.</a></p>
+    <p text-center>¿Ya estás registrado?
+      <a navPop>Inicia Sesión.</a>
+    </p>
   </ion-toolbar>
 </ion-footer>

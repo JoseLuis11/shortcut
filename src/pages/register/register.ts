@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
-
+import { Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 //interfaces
 import { Profile } from './../../interfaces/profile.interface';
 import { UserModel } from './../../interfaces/user.interface';
 
 //services
 import { AuthenticationService } from './../../providers/authentication/authentication.service';
+
+//validations
+import { ValidationMessages, PasswordValidator } from '../../validators/index.validators';
 
 @Component({
   selector: 'page-register',
@@ -17,9 +20,42 @@ export class RegisterPage {
   user = {} as UserModel;
   profile = {} as Profile;
   repeatedPassword: string;
+  
+  signupform:FormGroup;
+  matching_passwords_group:FormGroup;
+  validation_messages = ValidationMessages;
 
 
   constructor(public navCtrl: NavController, private loadingCtrl: LoadingController, private toastCtrl: ToastController, private authService: AuthenticationService) {
+    this.signupform = new FormGroup({
+      name: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('[a-zA-Z ]*')
+      ])),
+      lastname: new FormControl('', Validators.compose([
+        Validators.required,
+      Validators.minLength(2)
+      ])),
+      phone: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(10)
+      ])),
+      email: new FormControl('',[
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])
+    });
+
+    this.matching_passwords_group = new FormGroup({
+      password: new FormControl('', Validators.compose([
+         Validators.minLength(6),
+         Validators.required
+      ])),
+      confirm_password: new FormControl('', Validators.required)
+    }, (formGroup: FormGroup) => {
+       return PasswordValidator.areEqual(formGroup);
+    });
   }
 
   ngOnInit() {

@@ -8,9 +8,6 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { Appointment } from './../../interfaces/appointment.interface';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
-
-@IonicPage()
 @Component({
   selector: 'page-makeappointment',
   templateUrl: 'makeappointment.html',
@@ -32,7 +29,6 @@ export class MakeappointmentPage {
   today: string;
   display_date: Date;
   name_day: string;
-
 
   appointment = {} as Appointment;
 
