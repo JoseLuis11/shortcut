@@ -41,7 +41,7 @@ export class LoginPage {
         this.showToast('Usuario inexistente.');
       } else if (error.message.includes("The password is invalid")) {
         this.showToast('Contraseña incorrecta.');
-      } else if (error.message.includes("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")){
+      } else if (error.message.includes("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
         this.showToast('No hay conexión a internet.');
       } else {
         this.showToast('Ha ocurrido un error inesperado. Por favor intente nuevamente.');

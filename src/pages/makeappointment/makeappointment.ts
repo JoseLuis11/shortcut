@@ -32,6 +32,7 @@ export class MakeappointmentPage {
   today: string;
   display_date: Date;
   name_day: string;
+  appointmentsRef;
 
 
   appointment = {} as Appointment;
@@ -41,6 +42,9 @@ export class MakeappointmentPage {
     this.year = this.date.getFullYear().toString();
     console.log(this.year);
     this.month = (this.date.getMonth() + 1).toString();
+    if (this.month.length == 1) {
+      this.month = '0' + this.month;
+    }
     this.day = (this.date.getDate().toString());
     if (this.day.length == 1) {
       this.day = '0' + this.day;
@@ -106,7 +110,7 @@ export class MakeappointmentPage {
 
   onEmployeeChange(employee) {
     console.log(employee.$key);
-    this.appointment.employeeName = `${employee.name} ${employee.lastName}`;
+    this.appointment.employeeName = `${employee.firstName} ${employee.lastName}`;
     console.log(this.appointment.employeeName);
   }
 
@@ -132,6 +136,7 @@ export class MakeappointmentPage {
 
   makeAppointment() {
 
+    this.appointmentsRef = this.afDatabase.list(`/appointments`);
     // this.appointment.date = this.appointment.date.replace("T", " ");
     // this.appointment.date = this.appointment.date.replace("Z", "");
     this.displayDateFormat();
@@ -143,8 +148,16 @@ export class MakeappointmentPage {
 
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`clients/${auth.uid}/appointment`).set(this.appointment).then(() => {
-        loading.dismiss();
-        this.navCtrl.setRoot(HomePage);
+        //TODO: no lo haga compa
+        this.appointmentsRef.push(this.appointment).then(ref => {
+          this.appointment.k = ref.key;
+          this.afDatabase.object(`appointments/${ref.key}`).set(this.appointment).then(() => {
+            loading.dismiss();
+            this.navCtrl.setRoot(HomePage);
+          }).catch(error => {
+            console.log(error);
+          })
+        })
       }).catch(error => {
         loading.dismiss();
         this.showToast("Algo salió mal, intentalo de nuevo.");
@@ -159,6 +172,7 @@ export class MakeappointmentPage {
     this.display_date = new Date(this.appointment.date);
 
     //Year
+    console.log(this.year + "Helllooooo");
     this.year = this.display_date.getFullYear().toString();
 
     //Month
