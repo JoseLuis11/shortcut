@@ -2,50 +2,29 @@
   <img padding src="assets/img/small_logo.svg">
   <ion-list>
 
-    <form novalidate [formGroup]="loginform">
+    <ion-item padding-left padding-right>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]=user.email></ion-input>
+    </ion-item>
 
-      <ion-item padding-left padding-right>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="user.email" formControlName="email"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="( loginform.get('email').hasError('pattern') || loginform.get('email').hasError('required') ) && loginform.get('email').touched">
-        <p ion-text color="danger" *ngIf="loginform.get('email').hasError('required') && loginform.get('email').touched">
-          Se requiere un email valido.
-        </p>
-        <p ion-text color="danger" *ngIf="loginform.get('email').hasError('pattern') && loginform.get('email').touched">
-          Email invalido.
-        </p>
-      </ion-item>
-
-
-      <ion-item padding-left padding-right>
-        <ion-label floating>Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
-      </ion-item>
-      <ion-item no-lines *ngIf="( loginform.get('password').hasError('minlength') || loginform.get('password').hasError('required') ) && loginform.get('password').touched">
-        <p ion-text color="danger" *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
-          Se requiere una contraseña.
-        </p>
-        <p ion-text color="danger" *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched">
-          Se requiere minimo 6 caracteres.
-        </p>
-      </ion-item>
-
-    </form>
-
+    <ion-item padding-left padding-right padding-bottom>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]=user.password></ion-input>
+    </ion-item>
     <ion-item>
       <button padding [disabled]="!user.email.includes('@') || !user.email.includes('.') || user.email.length<4 || user.password.length<6"
         (keyup.enter)="login()" (click)="login()" text-center text-capitalize ion-button block>INGRESAR</button>
     </ion-item>
 
+
   </ion-list>
+
+
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <p text-center>¿No estás registrado?
-      <a [navPush]="registerPage">Regístrate. </a>
-    </p>
+    <p text-center>¿No estás registrado? <a [navPush]="registerPage">Regístrate. </a></p>
   </ion-toolbar>
 </ion-footer>
