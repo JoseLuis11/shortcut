@@ -24,7 +24,7 @@
     </ion-select>
   </ion-item>
   <ion-item no-lines *ngIf="appointment.workplaceName.length<1">
-    <p ion-text color="primary">Seleccione una sucursal.</p>
+    <p ion-text color="primary">Se necesita selecionar una sucursal.</p>
   </ion-item>
 
   <ion-item>
@@ -33,7 +33,7 @@
       [hourValues]="[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]" [minuteValues]="[00, 15, 30, 45]" [(ngModel)]="appointment.date"></ion-datetime>
   </ion-item>
   <ion-item no-lines *ngIf="appointment.date.length < 1">
-    <p ion-text color="primary">Escoja una fecha.</p>
+    <p ion-text color="primary">Escoge una fecha.</p>
   </ion-item>
 
   <ion-item>
@@ -43,7 +43,7 @@
     </ion-select>
   </ion-item>
   <ion-item no-lines *ngIf="appointment.employeeName.length < 1">
-    <p ion-text color="primary">Seleccione un empleado.</p>
+    <p ion-text color="primary">Selecciona un empleado.</p>
   </ion-item>
 
   <ion-item>
@@ -55,7 +55,7 @@
     <ion-checkbox color="dark" checked="false" (ionChange)="onServiceSelected(service)"></ion-checkbox>
   </ion-item>
   <ion-item no-lines *ngIf="appointment.serviceNames.length < 1">
-    <p ion-text color="primary">Selecione una servicio.</p>
+    <p ion-text color="primary">Seleciona una sucursal.</p>
   </ion-item>
 
   <ion-item>
