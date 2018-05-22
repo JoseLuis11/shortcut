@@ -1,5 +1,5 @@
 export interface Appointment {
-    k: string;
+    $key: string;
     date: string;
     clientName: string;
     employeeName: string;
